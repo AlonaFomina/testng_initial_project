@@ -9,6 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class Driver {
     private Driver() {
     }
@@ -44,10 +46,12 @@ public class Driver {
 
             }
         }
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         return driver;
     }
 
-    private static void quitDriver() {
+    public static void quitDriver() {
         if (driver != null) {
             driver.manage().deleteAllCookies();
             driver.quit();
